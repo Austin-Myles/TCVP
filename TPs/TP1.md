@@ -2,7 +2,7 @@
 
 _Maquinas de Turing. Jerarquía de la Computabilidad._
 
-1. Ejercicio 1:
+1. **Ejercicio 1**:
     1. Un problema computacional de decisión es un problema que simplifica el estudio de la
     computabilidad y la complejidad computacional. Mediante los problemas de decisión logramos
     trabajar directamente con lenguajes, estos al ser conjuntos de strings hace todo mas sencillo. Los problemas de decisión siempre tendran como salida un "si" o "no".\
@@ -66,7 +66,29 @@ _Maquinas de Turing. Jerarquía de la Computabilidad._
     
 
 
-2. Ejercicio 2:
-    - a
+2. **Ejercicio 2**: Construir una MT, con cualquier cantidad de cintas, que acepte de la manera más 
+eficiente posible el lenguaje L = {$a^n$ $b^n$ $c^n$ | n≥0}. Comentario: Plantear primero la idea general. 
+    - La MT debera tener un lenguaje que contenga a, b y c. Ʃ = {a,b,c}
+    MT M = (Q, Ʃ, δ, q<sub>0</sub>, q<sub>A</sub>, q<sub>R</sub>)\
+    La maquina va a primero verificar con su estado inicial sí es cadena vacia, si la cadena posee **a**, **b** o **c** como primer simbolo en la cinta. Segun el simbolo el estado inicial cambiara a uno de los 4 estados posibles: q<sub>1</sub>(Si comienza con a), q<sub>2</sub>(Si comienza con b), q<sub>3</sub>(Si comienza con c) o q<sub>A</sub>(Si es λ). Cabe recalcar que del estado q<sub>1</sub> se puede ir al q<sub>2</sub> o q<sub>3</sub> o q<sub>A</sub>, para el q<sub>2</sub> puede ir al q<sub>3</sub> o al q<sub>A</sub> y q<sub>3</sub> a q<sub>A</sub>. No olvidemos que las demas transciones terminaran en q<sub>R</sub>
+    
+
+3. **Ejercicio 3**: Explicar (informal pero claramente) cómo simular una MT por otra que en un paso no pueda simultáneamente modificar un símbolo y moverse
+    - Para simular ese tipo de maquina de MT, se debera separar la escritura del desplazamiento, primero se debera realizar la escritura y una vez se escribe se realizara el movimiento del cabezal en la cinta sin ninguna modificación en la cinta, el desplazmiento y la modificación seran segun el algoritmo a resolver. 
+
+4. **Ejercicio 4**. Probar: 
+    1. La clase R es cerrada con respecto a la operación de unión. Ayuda: la prueba es similar a la desarrollada para la intersección. 
+    - Segun el Lema 2(Teoria N°2) Si L<sub>1</sub> ∈ R y L<sub>2</sub> ∈ R, entonces L<sub>1</sub> ⋂ L<sub>2</sub> ∈ R. \
+    Entonces Si L<sub>1</sub> ∈ R y L<sub>2</sub> ∈ R, entonces L<sub>1</sub> U L<sub>2</sub> ∈ R.
+    2. La  clase  RE es cerrada con respecto  a  la operación  de  intersección.  Ayuda: la  prueba es similar a la desarrollada para la clase R.
+    - Nuevamente si es necesario la demostración mediante la clase R, es posible expresar que si L<sub>1</sub> ∈ R y L<sub>2</sub> ∈ R, entonces L<sub>1</sub> ⋂ L<sub>2</sub> ∈ R. \
+    Entonces Si L<sub>1</sub> ∈ RE y L<sub>2</sub> ∈ RE, entonces L<sub>1</sub> ⋂ L<sub>2</sub> ∈ RE. No hay que olvidar que R ⊆ RE. 
+
+5. Ejercicio  5.  Sean  L1  y  L2  dos  lenguajes  recursivamente  numerables  de  números  naturales 
+codificados en unario (por ejemplo, el número 5 se representa con 11111). Probar que también 
+es recursivamente numerable el lenguaje L = {x | x es un número natural codificado en unario, y 
+existen y, z, tales que y + z = x, con y ∈ L1, z ∈ L2}.  
+Ayuda: la prueba es similar a la vista en clase, de la propiedad de clausura de la clase RE con 
+respecto a la operación de concatenación
 
 -
