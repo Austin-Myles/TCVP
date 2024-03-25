@@ -48,16 +48,18 @@ _Maquinas de Turing. Jerarquía de la Computabilidad._
         Un ejemplo conocido es Halting Problem para el cual no existe un algoritmo que determine si el programa se detendrá, una vez sea ejecutado...
 
     7. A partir de la jerarquía de la computabilidad se puede demostrar que  R ⊆ RE ⊆ L* \
-        -R ⊆ RE se puede probar ya que, todo lenguaje R es tambien RE pero que siempre va a parar, nunca loopea. \
-        -RE ⊆ L* tambien ya que los lenguajes RE estan comprendidos sobre el alfabeto de Ʃ.
+        - *𝔏* son los lenguajes para los cuales no existen una MT que, al recibir una entrada, siempre se detenga y acepte la cadena.
+        - *RE* son los lenguajes para los cuales existe una MT que eventualmente se detiene y acepta o no la cadena.
+        - *R* son los lengaujes para los cuales existe una MT que siempre se detiene y decide si acepta o no la cadena.
+
+        - La jerarquia aqui comienza con los lenguajes para los cuales existe una MT que siempre se detiene, luego nos encontramos con los lenguajes para los cuales tambien existe una MT pero no siempre se detendra segun la entrada y finalizamos con lenguajes para los cuales no existe una MT.
     
-    8. Todo lenguaje que perteneca a los **CO-RE** y por consiguiente no pertenezca a los **RE**, algunos tambien pueden ser decidibles ya que pueden estar comprendidos en **R** , no hay que olvidarnos que **R = RE ⋂ CO-RE**. ((REVISAR))
+    8. Los lenguajes pertenecientes a la clase **CO-RE** no poseen una MT que los acepte, ya que es imposible definir un algoritmo para aceptar esa clase de lenguaje. Para que sea posible aceptar **CO-RE**, la maquina al parar debe entrar en estado de rechazo y al loopear debe entrar en estado de aceptación, pero es muy complicado/imposible realizar esa transición ya que la maquina estara loopeando. 
+    Es simplemente aplicarle tambien el complemento a la MT que lo debe aceptar.
 
-    9. Ʃ* es recursivo ya que acepta cualquier entrada que este definida sobre Ʃ por ende siempre se detendra sin importar la entrada.\
-    ∅ siempre se detendra para cualquier entrada ya que posee el conjunto vacio, o sea nada.
-    ((PREGUNTAR))
+    9. Para ambos es necesario justificar con una MT que acepte ese lenguaje. 
 
-    10. Ya que al ser finito, la MT que lo procesa se detendrá.
+    10. Un lenguaje finito es recursivo porque es posible decidir si la entrada pertenece o no al lenguaje que acepta la MT.
 
     11. L<sub>1</sub> ∈ CO-RE y L<sub>2</sub> ∈ CO-RE. Entonces (L<sub>1</sub> ⋂ L<sub>2</sub>) ∈ CO-RE. \
     Si usamos la Ley de Morgan tenemos que:  (L<sub>1</sub> ⋂ L<sub>2</sub>)C = L<sub>1</sub>^C ⋃ L<sub>2</sub>^C = RE.\
@@ -84,11 +86,18 @@ eficiente posible el lenguaje L = {$a^n$ $b^n$ $c^n$ | n≥0}. Comentario: Plant
     - Nuevamente si es necesario la demostración mediante la clase R, es posible expresar que si L<sub>1</sub> ∈ R y L<sub>2</sub> ∈ R, entonces L<sub>1</sub> ⋂ L<sub>2</sub> ∈ R. \
     Entonces Si L<sub>1</sub> ∈ RE y L<sub>2</sub> ∈ RE, entonces L<sub>1</sub> ⋂ L<sub>2</sub> ∈ RE. No hay que olvidar que R ⊆ RE. 
 
-5. Ejercicio  5.  Sean  L1  y  L2  dos  lenguajes  recursivamente  numerables  de  números  naturales 
-codificados en unario (por ejemplo, el número 5 se representa con 11111). Probar que también 
-es recursivamente numerable el lenguaje L = {x | x es un número natural codificado en unario, y 
-existen y, z, tales que y + z = x, con y ∈ L1, z ∈ L2}.  
-Ayuda: la prueba es similar a la vista en clase, de la propiedad de clausura de la clase RE con 
-respecto a la operación de concatenación
+5. **Ejercicio 5**.  Sean  L1  y  L2  dos  lenguajes  recursivamente  numerables  de  números  naturales codificados en unario (por ejemplo, el número 5 se representa con 11111). Probar que también es recursivamente numerable el lenguaje L = {x | x es un número natural codificado en unario, y existen y, z, tales que y + z = x, con y ∈ L1, z ∈ L2}.  
+Ayuda: la prueba es similar a la vista en clase, de la propiedad de clausura de la clase RE con respecto a la operación de concatenación.
 
--
+    -A partir del Lema 3 de las propiedades de la clase RE, Si L<sub>1</sub> ∈ RE y L<sub>2</sub> ∈ RE, entonces L<sub>1</sub> U L<sub>2</sub> ∈ RE, en este caso L es un lenguaje que expresa sun número natural codificado en binario compuesto por la suma de ***y*** y ***z***, respectivamente ***y*** ∈ L<sub>1</sub> y ***z*** ∈ L<sub>2</sub>. L en este caso es el producto de la únion entre L<sub>1</sub> y L<sub>2</sub>.
+
+6. **Ejercicio 6**. Dada una MT M1 con alfabeto Ʃ = {0, 1}: 
+    1. Construir una MT M2 que determine si L(M1) tiene al menos una cadena.
+    
+        - Sera necesario que M2 posea un contador auxiliar **i** el cual iniciara en 1. 
+        - M2 debera ejecutar **i** pasos de M sobre todas las cadenas de a lo sumo **i**.
+        - Si M acepta en algun caso, M2 acepta. 
+        - Si no es el caso, el contador **i** se incrementara y se volvera a ejecutar los **i** pasos.
+
+    2. ¿Se  puede  construir  además  una  MT  M3  para  determinar  si  L(M1)  tiene  a  lo  sumo  una cadena? Justificar.
+        - Sera casi similar al comportamiento de M2 solo que M3 tendra un contador en el cual contara el número de veces que M1 se detiene aceptando una cadena.
