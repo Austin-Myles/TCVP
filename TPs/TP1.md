@@ -72,7 +72,16 @@ _Maquinas de Turing. Jerarquía de la Computabilidad._
 eficiente posible el lenguaje L = {$a^n$ $b^n$ $c^n$ | n≥0}. Comentario: Plantear primero la idea general. 
     - La MT debera tener un lenguaje que contenga a, b y c. Ʃ = {a,b,c}
     MT M = (Q, Ʃ, δ, q<sub>0</sub>, q<sub>A</sub>, q<sub>R</sub>)\
-    La maquina va a primero verificar con su estado inicial sí es cadena vacia, si la cadena posee **a**, **b** o **c** como primer simbolo en la cinta. Segun el simbolo el estado inicial cambiara a uno de los 4 estados posibles: q<sub>1</sub>(Si comienza con a), q<sub>2</sub>(Si comienza con b), q<sub>3</sub>(Si comienza con c) o q<sub>A</sub>(Si es λ). Cabe recalcar que del estado q<sub>1</sub> se puede ir al q<sub>2</sub> o q<sub>3</sub> o q<sub>A</sub>, para el q<sub>2</sub> puede ir al q<sub>3</sub> o al q<sub>A</sub> y q<sub>3</sub> a q<sub>A</sub>. No olvidemos que las demas transciones terminaran en q<sub>R</sub>
+    La idea es que la MT posea dos cintas, la primera con la entrada y la segunda usada para poder verificar que la primera cumple.
+    
+    - La maquina va a primero verificar con su estado inicial sí es cadena vacia o si la cadena posee **a** como primer simbolo en la cinta, comenzamos obviamente con el estado q<sub>0</sub>. 
+    - Si la cadena es λ la MT para en q<sub>A</sub>. 
+    - Si la cadena comienza con a, comenzamos a copiar la primera cinta en la segunda, una vez terminamos de leer **a** en la primera cinta transicionamos a otro estado dependiendo del caracter que hayamos leido, si es **b** transicionamos al estado q<sub>1</sub>. 
+    - Seguiremos recorriendo hasta encontrarnos con **c** en la primera cinta y en la segunda cinta iremos hacia la izquierda hasta llegar al primer **a**, en ese caso transicionamos al estado q<sub>2</sub>. 
+    - La primera cinta estara parada en **c** y la segunda en el primer **a**. Se recorera la primera y segunda cinta hasta llegar a **B**. Si ambos llegan a **B** a la vez entonces la MT para en q<sub>A</sub>.
+    Los demas comportamientos transicionaran a q<sub>R</sub>.
+    
+        ![alt text](image.png)
     
 
 3. **Ejercicio 3**: Explicar (informal pero claramente) cómo simular una MT por otra que en un paso no pueda simultáneamente modificar un símbolo y moverse
